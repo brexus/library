@@ -2,6 +2,8 @@
 
 :root {
     --white-darker-color: #e2e8f0;
+    --success: #31b907;
+    --fail: #c40000;
 }
 
 * {
@@ -86,6 +88,77 @@ body {
 #add-book:active {
     transform: scale(1.07);
 }
+
+#form-book {
+    /* display: flex; */
+    flex-direction: column;
+    color: white;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    top: 25%;
+    left: 25%;
+
+    width: 400px;
+    height: auto;
+    padding: 60px 30px;
+    background-color: rgb(46, 46, 46);
+    border-radius: 20px;
+}
+
+.active {
+    display: flex;
+}
+
+.disable {
+    display: none;
+}
+
+.input-control {
+    color: white;
+    font-size: 1.2rem;
+    /* font-weight: bolder; */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.input-control > input {
+    font-size: 1.1rem;
+    border: 0;
+    border-radius: 5px;
+    /* width: 100%; */
+    padding: 5px 10px;
+}
+
+.input-control > input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+}
+
+.btn-submit {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 5px 20px;
+    border: 2px solid var(--success);
+    color: var(--success);
+    border-radius: 10px;
+    background-color: rgb(46, 46, 46);
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
+    box-shadow: 0px 0px 20px -7px var(--success);
+}
+
+.btn-submit:active {
+    transform: scale(0.99);
+    /* transition: 0.2s; */
+}
+
 
 #footer {
     text-align: center;
