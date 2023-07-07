@@ -4,6 +4,7 @@
     --white-darker-color: #e2e8f0;
     --success: #31b907;
     --fail: #c40000;
+    --form-window: rgb(46, 46, 46);
 }
 
 * {
@@ -71,10 +72,11 @@ body {
 }
 
 #add-book {
-    justify-self: center;
-    align-self: center;
     padding: 10px 20px;
     border: 1px solid black;
+    /* background-color: white; */
+    bottom: 5vh;
+    right: 5vw;
     border-radius: 10px;
     cursor: pointer;
     font-weight: bolder;
@@ -102,22 +104,28 @@ body {
     width: 400px;
     height: auto;
     padding: 30px 30px 60px 30px;
-    background-color: rgb(46, 46, 46);
+    background-color: var(--form-window);
     border-radius: 20px;
 }
 
-#form-book > svg {
-    fill: white;
-    width: 50px;
+#btn-form-close {
+    background-color: var(--form-window);
+    border: 0;
     align-self: self-end;
     cursor: pointer;
 }
 
-#form-book > svg:hover {
+#btn-form-close > svg {
+    fill: white;
+    width: 50px;
+}
+
+#btn-form-close > svg:hover {
     fill: var(--fail);
     transform: scale(1.2);
     transition: 0.2s;
 }
+
 
 .active {
     display: flex;
@@ -150,7 +158,7 @@ body {
     height: 25px;
 }
 
-.btn-submit {
+#btn-submit {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 5px 20px;
@@ -161,13 +169,13 @@ body {
     cursor: pointer;
 }
 
-.btn-submit:hover {
+#btn-submit:hover {
     transform: scale(1.05);
     transition: 0.2s;
     box-shadow: 0px 0px 20px -7px var(--success);
 }
 
-.btn-submit:active {
+#btn-submit:active {
     transform: scale(0.99);
     /* transition: 0.2s; */
 }
