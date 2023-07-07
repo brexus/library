@@ -1,5 +1,6 @@
 const booksContainer = document.getElementById("main");
 const books = document.querySelectorAll(".book-cart");
+const formWindow = document.getElementById("form-book");
 
 let actualLastBook;
 
@@ -16,8 +17,13 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
-function addLibraryToPage() {
+function clearLibraryFromPage() {
+    booksContainer.innerHTML = "";
+}
 
+function addLibraryToPage() {
+    clearLibraryFromPage();
+    
     myLibrary.forEach(book => {
         const bookCart = document.createElement("div");
         bookCart.classList.add("book-cart");
@@ -52,29 +58,49 @@ function addLibraryToPage() {
         bookCart.appendChild(bookIcons);
         booksContainer.appendChild(bookCart);
     });
-    const addBookCart = document.createElement("div");
-    addBookCart.id = "add-book";
-    addBookCart.innerText = "+ Add book";
-    booksContainer.appendChild(addBookCart);
 
 }
 
+function addBookListener() {
+    const btnFormAdd = document.getElementById("btn-submit");
+    const inputTitle = document.getElementById("title");
+    const inputAuthor = document.getElementById("author");
+    const inputPages = document.getElementById("pages");
+    const inputRead = document.getElementById("read");
 
+    btnFormAdd.addEventListener("click", () => {
+        const inputTitleValue = inputTitle.value;
+        const inputAuthorValue = inputAuthor.value;
+        const inputPagesValue = inputPages.value;
+        const inputReadValue = inputRead.checked;
+
+        const newBook = new Book(inputTitleValue, inputAuthorValue, inputPagesValue, inputReadValue);
+        addBookToLibrary(newBook);
+        addLibraryToPage();
+    });
+}
+
+function addFormWindow() {
+    const btnCloseForm = document.getElementById("btn-form-close");
+
+    btnCloseForm.addEventListener("click", () => {
+        if (formWindow.className === "active")
+            formWindow.className = "disable";
+    });
+
+    const btnAddBook = document.getElementById("add-book");
+
+    btnAddBook.addEventListener("click", () => {
+        if (formWindow.className === "disable")
+            formWindow.className = "active";
+    });
+
+    addBookListener()
+}
 
 function startLibrary() {
-    // listening przycisku ADD BOOK
+    addFormWindow();
 
-
-    // stworzyć nowy obiekt BOOK
-    const book1 = new Book("Harry Potter 2", "J.K. Rowling", 320, true);
-    const book2 = new Book("Zwariowany Karolek", "Joanna Bolszewik", 125, false);
-
-    // dodać do biblioteki addBookToLibrary
-    addBookToLibrary(book1);
-    addBookToLibrary(book2);
-
-
-    // dodac biblioteke do strony add LibraryToPage
     addLibraryToPage();
 }
 
