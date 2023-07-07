@@ -13,10 +13,12 @@
     <header id="header">
         <h1>Library</h1>
         <svg width="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>book-open-page-variant</title><path d="M19 2L14 6.5V17.5L19 13V2M6.5 5C4.55 5 2.45 5.4 1 6.5V21.16C1 21.41 1.25 21.66 1.5 21.66C1.6 21.66 1.65 21.59 1.75 21.59C3.1 20.94 5.05 20.5 6.5 20.5C8.45 20.5 10.55 20.9 12 22C13.35 21.15 15.8 20.5 17.5 20.5C19.15 20.5 20.85 20.81 22.25 21.56C22.35 21.61 22.4 21.59 22.5 21.59C22.75 21.59 23 21.34 23 21.09V6.5C22.4 6.05 21.75 5.75 21 5.5V19C19.9 18.65 18.7 18.5 17.5 18.5C15.8 18.5 13.35 19.15 12 20V6.5C10.55 5.4 8.45 5 6.5 5Z" /></svg>
+        <div id="add-book">+ Add book</div>
     </header>
 
     <main id="main">
-        <div class="book-cart">
+        
+        <!-- <div class="book-cart">
             <p class="book-title">Harry Potter 1</p>
             <p class="book-author">J.K. Rowling</p>
             <p class="book-pages">Pages: 184</p>
@@ -31,33 +33,34 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>pencil-outline</title><path d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" /></svg>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>delete-outline</title><path d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" /></svg>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>star-outline</title><path d="M12,15.39L8.24,17.66L9.23,13.38L5.91,10.5L10.29,10.13L12,6.09L13.71,10.13L18.09,10.5L14.77,13.38L15.76,17.66M22,9.24L14.81,8.63L12,2L9.19,8.63L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24Z" /></svg>
-            </div>
+            </div> -->
         </div>
     </main> 
 
-    <form id="form-book" class="active" method="get" action="">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>        <h2>Add new book</h2>
+    <form id="form-book" class="disable" method="" action="" novalidate>
+        <button id="btn-form-close" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg></button>         
+        <h2>Add new book</h2>
         <div class="input-control">
             <label for="title">Title:</label>
-            <input type="text" name="" id="title" required>
+            <input type="text" name="title" id="title" required>
         </div>
 
         <div class="input-control">
             <label for="author">Author:</label>
-            <input type="text" name="" id="author" required>
+            <input type="text" name="author" id="author" required>
         </div>
 
         <div class="input-control">
             <label for="pages">Pages:</label>
-            <input type="number" name="" id="pages" min="1" required>
+            <input type="number" name="pages" id="pages" min="1" required>
         </div>
 
         <div class="input-control">
             <label for="read">Have you read the book?</label>
-            <input type="checkbox" name="" id="read">
+            <input type="checkbox" name="read" id="read">
         </div>
 
-        <button class="btn-submit" type="submit">Add</button>
+        <button id="btn-submit" type="button">Add</button>
     </form>
 
     <footer id="footer">
