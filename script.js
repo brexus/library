@@ -23,7 +23,7 @@ function clearLibraryFromPage() {
 
 function addLibraryToPage() {
     clearLibraryFromPage();
-    
+
     myLibrary.forEach(book => {
         const bookCart = document.createElement("div");
         bookCart.classList.add("book-cart");
@@ -77,6 +77,9 @@ function addBookListener() {
         const newBook = new Book(inputTitleValue, inputAuthorValue, inputPagesValue, inputReadValue);
         addBookToLibrary(newBook);
         addLibraryToPage();
+
+        formWindow.reset();
+        formWindow.className = "disable";
     });
 }
 
