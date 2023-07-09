@@ -32,14 +32,7 @@ function deleteBooksListeners() {
     });
 }
 
-function reloadLibrary() {
-    clearLibraryFromPage();
-    addLibraryToPage();
-}
-
 function addLibraryToPage() {
-    clearLibraryFromPage();
-
     myLibrary.forEach(book => {
         const bookCart = document.createElement("div");
         bookCart.classList.add("book-cart");
@@ -76,7 +69,6 @@ function addLibraryToPage() {
         bookCart.appendChild(bookIcons);
         booksContainer.appendChild(bookCart);
     });
-    deleteBooksListeners();
 }
 
 function addBookListener() {
@@ -94,7 +86,7 @@ function addBookListener() {
 
         const newBook = new Book(inputTitleValue, inputAuthorValue, inputPagesValue, inputReadValue);
         addBookToLibrary(newBook);
-        addLibraryToPage();
+        reloadLibrary();
         statusReadListener();
 
         formWindow.reset();
@@ -136,12 +128,16 @@ function statusReadListener() {
     }
 }
 
+function reloadLibrary() {
+    clearLibraryFromPage();
+    addLibraryToPage();
+    deleteBooksListeners();
+    statusReadListener();
+}
+
 function startLibrary() {
     addFormWindow();
     addLibraryToPage();
-    statusReadListener();
-    deleteBooksListeners();
 }
-
 
 startLibrary();
