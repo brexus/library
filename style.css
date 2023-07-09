@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;900&display=swap');
 
 :root {
-    --white-darker-color: #e2e8f0;
+    --light: #e2e8f0;
+    --dark: rgb(46, 46, 46);
     --success: #31b907;
+    --success-light: #6db856;
     --fail: #c40000;
+    --fail-light: #b85858;
     --form-window: rgb(46, 46, 46);
-    --read: #6db856;
-    --not-read: #b85858;;
 }
 
 * {
@@ -16,6 +17,35 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+}
+
+.dark-mode {
+    background-color: var(--dark);
+    color: var(--light);
+    fill: var(--light);
+}
+
+.light-mode {
+    background-color: var(--light);
+    color: var(--dark);
+    fill: var(--dark);
+}
+
+#dark-light-toggle {
+    cursor: pointer;
+    /* min-width: 40px; */
+    min-width: 30px;
+    max-width: 30px;
+}
+
+#dark-light-toggle:hover {
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+
+#dark-light-toggle:active {
+    transform: scale(0.95);
+    transition: 0.1s;
 }
 
 #container {
@@ -28,7 +58,6 @@ body {
 #header {
     padding: 20px 40px;
     /* margin-bottom: 40px; */
-    background-color: var(--white-darker-color);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     display: flex;
     flex-direction: row;
@@ -36,7 +65,12 @@ body {
 
 #header > h1 {
     margin-right: 15px;
+
 }
+
+#logo-icon {
+    min-width: 50px;
+    max-width: 50px;}
 
 #main {
     display: grid;
@@ -51,12 +85,9 @@ body {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-rows: max-content max-content repeat(3, 1fr);
-    /* background-color: rgb(177, 173, 190); */
     border-radius: 15px;
     padding: 50px 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    /* justify-self: center; */
-    /* align-self: center; */
     text-align: center;
 }
 
@@ -70,17 +101,11 @@ body {
 }
 
 .read {
-    background-color: var(--read);
+    background-color: var(--success-light);
 }
 
 .not-read {
-    background-color: var(--not-read);
-}
-
-.book-cart > * {
-
-    /* justify-content: center;
-    align-items: center; */
+    background-color: var(--fail-light);
 }
 
 .book-title {
@@ -118,7 +143,7 @@ body {
     transition: 0.1s;
     fill: rgb(255, 255, 255);
     /* stroke: black; */
-    fill-rule:nonzero;
+    fill-rule: nonzero;
 }
 
 .book-icons > svg:active {
@@ -126,16 +151,11 @@ body {
     transition: 0.1s;
 }
 
-.btn-book-delete {
-}
-
-.btn-book-favourite {
-}
-
 #add-btn-container {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    margin: 0 15px;
 }
 
 #add-book {
@@ -160,11 +180,13 @@ body {
 #form-book {
     /* display: flex; */
     flex-direction: column;
-    color: white;
     justify-content: flex-start;
     align-items: center;
     padding: 30px 30px 60px 30px;
-    background-color: var(--form-window);
+
+    color: white;
+    background-color: var(--dark);
+
     border-radius: 20px;
     height: auto;
 
@@ -175,7 +197,7 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-    /* bring your own prefixes */
+    
     transform: translate(-50%, -50%);
 }
 
