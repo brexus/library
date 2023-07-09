@@ -21,13 +21,37 @@ function clearLibraryFromPage() {
     booksContainer.innerHTML = "";
 }
 
-function deleteBooksListeners() {
+function showFormWindow() {
+    formWindow.className = "active";
+}
+
+function hideFormWindow() {
+    formWindow.className = "disable";
+}
+
+function addDeleteBookListener() {
     const btnsDelete = document.querySelectorAll(".btn-book-delete");
 
     btnsDelete.forEach((item, index) => {
         item.addEventListener('click', () => {
             myLibrary.splice(index, 1);
             reloadLibrary();
+        });
+    });
+}
+
+function addEditBookListener() {
+    const btnsEdit = document.querySelectorAll(".btn-book-edit");
+
+    btnsEdit.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            console.log(index);
+            showFormWindow();
+            document.getElementById('title').value = myLibrary[index].title;
+            document.getElementById('author').value = myLibrary[index].author;
+            document.getElementById('pages').value = myLibrary[index].pages;
+            document.getElementById('read').value = myLibrary[index].read;
+            addFormWindowListener('edit', index);
         });
     });
 }
@@ -60,7 +84,7 @@ function addLibraryToPage() {
         }
         const bookIcons = document.createElement("div");
         bookIcons.classList.add("book-icons");
-        bookIcons.innerHTML = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><title>pencil-outline</title><path d='M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z' /></svg><svg class='btn-book-delete' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><title>delete-outline</title><path d='M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z' /></svg><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><title>star-outline</title><path d='M12,15.39L8.24,17.66L9.23,13.38L5.91,10.5L10.29,10.13L12,6.09L13.71,10.13L18.09,10.5L14.77,13.38L15.76,17.66M22,9.24L14.81,8.63L12,2L9.19,8.63L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24Z' /></svg>";
+        bookIcons.innerHTML = "<svg class='btn-book-edit' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><title>pencil-outline</title><path d='M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z' /></svg><svg class='btn-book-delete' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><title>delete-outline</title><path d='M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z' /></svg>";
 
         bookCart.appendChild(bookTitle);
         bookCart.appendChild(bookAuthor);
@@ -71,7 +95,7 @@ function addLibraryToPage() {
     });
 }
 
-function addBookListener() {
+function addSaveBookListener(mode, index) {
     const btnFormAdd = document.getElementById("btn-submit");
     const inputTitle = document.getElementById("title");
     const inputAuthor = document.getElementById("author");
@@ -84,35 +108,45 @@ function addBookListener() {
         const inputPagesValue = inputPages.value;
         const inputReadValue = inputRead.checked;
 
-        const newBook = new Book(inputTitleValue, inputAuthorValue, inputPagesValue, inputReadValue);
-        addBookToLibrary(newBook);
-        reloadLibrary();
-        statusReadListener();
+        if(mode === 'add') {
+            const newBook = new Book(inputTitleValue, inputAuthorValue, inputPagesValue, inputReadValue);
+            addBookToLibrary(newBook);
 
+        } else if (mode === 'edit') {
+            const newBook = new Book(inputTitleValue, inputAuthorValue, inputPagesValue, inputReadValue);
+            myLibrary.splice(index,1);
+            myLibrary[index] = newBook;
+
+        }
+        console.log(myLibrary);
+        
         formWindow.reset();
-        formWindow.className = "disable";
+        hideFormWindow();
+        reloadLibrary();
+
     });
 }
 
-function addFormWindow() {
+function addCloseFormListener() {
     const btnCloseForm = document.getElementById("btn-form-close");
 
     btnCloseForm.addEventListener("click", () => {
         if (formWindow.className === "active")
-            formWindow.className = "disable";
+        hideFormWindow();
     });
+}
 
+function addShowFormListener() {
     const btnAddBook = document.getElementById("add-book");
 
     btnAddBook.addEventListener("click", () => {
-        if (formWindow.className === "disable")
-            formWindow.className = "active";
+        if (formWindow.classList.contains("disable"))
+        showFormWindow();
     });
-
-    addBookListener();
 }
 
-function statusReadListener() {
+
+function addStatusReadListener() {
     const readInputSliders = document.querySelectorAll('.read-status');
     const bookCarts = document.querySelectorAll('.book-cart');
 
@@ -128,16 +162,39 @@ function statusReadListener() {
     }
 }
 
+function addFormWindowListener(mode, index) {
+    addCloseFormListener();
+    addSaveBookListener(mode, index);
+}
+
 function reloadLibrary() {
     clearLibraryFromPage();
     addLibraryToPage();
-    deleteBooksListeners();
-    statusReadListener();
+    addDeleteBookListener();
+    addEditBookListener();
+    addStatusReadListener();
 }
 
 function startLibrary() {
-    addFormWindow();
-    addLibraryToPage();
+    addShowFormListener();
+    addFormWindowListener('add');
 }
 
 startLibrary();
+
+
+const darkLightToggle = document.getElementById("dark-light-toggle");
+
+darkLightToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    document.body.classList.toggle('light-mode');
+
+    // if (formWindow.classList.contains('dark-mode')){
+    //     formWindow.classList.remove('dark-mode');
+    //     formWindow.classList.add('light-mode');
+    // } else if (formWindow.classList.contains('light-mode')){
+    //     formWindow.classList.remove('light-mode');
+    //     formWindow.classList.add('dark-mode');
+    // }
+    
+});
