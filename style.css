@@ -61,6 +61,8 @@ body {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 #header > h1 {
@@ -158,6 +160,10 @@ body {
     margin: 0 15px;
 }
 
+#add-btn-container > #add-book {
+    text-align: center;
+}
+
 #add-book {
     padding: 8px 15px;
     border: 2px solid var(--success);
@@ -218,7 +224,6 @@ body {
     transform: scale(1.2);
     transition: 0.2s;
 }
-
 
 .active {
     display: flex;
@@ -297,27 +302,6 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ==================== SLIDER =================*/
 
 .switch {
@@ -379,4 +363,11 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+
+@media only screen and (max-width: 480px) { 
+    #header > h1 {
+        display: none;
+    }
 }
