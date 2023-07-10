@@ -41,6 +41,9 @@ body {
 #dark-light-toggle:hover {
     transform: scale(1.1);
     transition: 0.2s;
+    filter: drop-shadow(0px 0px 3px white);
+    
+
 }
 
 #dark-light-toggle:active {
@@ -137,15 +140,14 @@ body {
     width: 40px;
     padding: 0 5px;
     cursor: pointer;
-    fill: black;
 }
 
 .book-icons > svg:hover {
     transform: scale(1.1);
     transition: 0.1s;
-    fill: rgb(255, 255, 255);
+    filter: drop-shadow(0px 0px 3px white);
     /* stroke: black; */
-    fill-rule: nonzero;
+    /* fill-rule: nonzero; */
 }
 
 .book-icons > svg:active {
@@ -177,6 +179,7 @@ body {
 #add-book:hover {
     transform: scale(1.03);
     transition: 0.1s;
+    box-shadow: 0px 0px 18px -5px var(--success);
 }
 
 #add-book:active {
@@ -270,7 +273,7 @@ body {
     border: 3px solid var(--success);
     color: var(--success);
     border-radius: 10px;
-    background-color: var(--light);
+    background-color: transparent;
     cursor: pointer;
 }
 
