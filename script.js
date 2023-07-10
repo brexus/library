@@ -70,11 +70,11 @@ function addLibraryToPage() {
 
         const bookTitle = document.createElement("p");
         bookTitle.classList.add("book-title");
-        bookTitle.innerText = book.title;
+        bookTitle.innerText = `"${book.title}"`;
 
         const bookAuthor = document.createElement("p");
         bookAuthor.classList.add("book-author");
-        bookAuthor.innerText = book.author;
+        bookAuthor.innerText = `by ${book.author}`;
 
         const bookPages = document.createElement("p");
         bookPages.classList.add("book-pages");
@@ -111,16 +111,24 @@ function addSaveBookListener() {
     const inputAuthor = document.getElementById("author");
     const inputPages = document.getElementById("pages");
     const inputRead = document.getElementById("read");
-
     btnFormAdd.addEventListener("click", () => {
+        
         const inputTitleValue = inputTitle.value;
         const inputAuthorValue = inputAuthor.value;
         const inputPagesValue = inputPages.value;
         const inputReadValue = inputRead.checked;
 
-        // if(mode === 'add') {
-        const newBook = new Book(inputTitleValue, inputAuthorValue, inputPagesValue, inputReadValue);
-        addBookToLibrary(newBook);
+        if( inputTitleValue !== '' && 
+            inputAuthorValue !== '' &&
+            inputPagesValue !== '') {
+            const newBook = new Book(inputTitleValue, inputAuthorValue, inputPagesValue, inputReadValue);
+            addBookToLibrary(newBook);
+            formWindow.reset();
+            hideFormWindow();
+            reloadLibrary();       
+        }
+        
+
 
         // } else if (mode === 'edit') {
         //     const newBook = new Book(inputTitleValue, inputAuthorValue, inputPagesValue, inputReadValue);
@@ -128,9 +136,7 @@ function addSaveBookListener() {
         //     console.log(`Długość po: ${myLibrary}`);
         // }
         
-        formWindow.reset();
-        hideFormWindow();
-        reloadLibrary();
+
 
     });
 }
@@ -174,8 +180,6 @@ function addFormWindowListener() {
     addCloseFormListener();
     addSaveBookListener();
 }
-
-
 
 function reloadLibrary() {
     clearLibraryFromPage();
