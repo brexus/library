@@ -22,11 +22,17 @@ function clearLibraryFromPage() {
 }
 
 function showFormWindow() {
-    formWindow.className = "active";
+    if(formWindow.classList.contains('disable')){
+        formWindow.classList.remove("disable");
+        formWindow.classList.add("active");
+    } 
 }
 
 function hideFormWindow() {
-    formWindow.className = "disable";
+    if(formWindow.classList.contains('active')){
+        formWindow.classList.remove("active");
+        formWindow.classList.add("disable");
+    }
 }
 
 function addDeleteBookListener() {
@@ -133,8 +139,8 @@ function addCloseFormListener() {
     const btnCloseForm = document.getElementById("btn-form-close");
 
     btnCloseForm.addEventListener("click", () => {
-        if (formWindow.className === "active")
-        hideFormWindow();
+        if (formWindow.classList.contains("active"))
+            hideFormWindow();
     });
 }
 
@@ -175,7 +181,6 @@ function reloadLibrary() {
     clearLibraryFromPage();
     addLibraryToPage();
     addDeleteBookListener();
-    addEditBookListener();
     addStatusReadListener();
 }
 
@@ -184,22 +189,22 @@ function startLibrary() {
     addFormWindowListener();
 }
 
-startLibrary();
-
-
 const darkLightToggle = document.getElementById("dark-light-toggle");
 
 darkLightToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     document.body.classList.toggle('light-mode');
 
-    // if (formWindow.classList.contains('dark-mode')){
-    //     formWindow.classList.remove('dark-mode');
-    //     formWindow.classList.add('light-mode');
-    // } else if (formWindow.classList.contains('light-mode')){
-    //     formWindow.classList.remove('light-mode');
-    //     formWindow.classList.add('dark-mode');
-    // }
+    console.log(formWindow.className);
+
+    formWindow.classList.toggle('light-mode');
+    formWindow.classList.toggle('dark-mode');
     
+
 });
+
+startLibrary();
+
+
+
 
