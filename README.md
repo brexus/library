@@ -3,6 +3,7 @@
 
 This is a Library project as part of The Odin Project course. 
 This app allows you to add books with information and change their read status.
+This project has a form with JavaScript validation.
 
 
 ## Demo live
